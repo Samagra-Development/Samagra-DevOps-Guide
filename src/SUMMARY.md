@@ -1,3 +1,6 @@
 # Summary
 
-- [Chapter 1](./chapter_1.md)
+[Introduction](./introduction.md)
+[Infrastructure Overview](./infrastructure.md)
+[Github](./github.md)
+[Jenkins](jenkins.md)
