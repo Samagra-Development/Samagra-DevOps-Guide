@@ -15,6 +15,7 @@ In project space there are directories for specific projects or job.
 For each job we have two pipelines.
 - build
 - deploy-staging
+- deploy-prod (third pipeline yet to come)
 ![image](https://user-images.githubusercontent.com/79367883/222869689-285557b2-cb88-491b-8e66-2828d29fb8a4.png)
 
 #### Build Pipeline
