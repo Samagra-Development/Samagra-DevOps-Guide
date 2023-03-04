@@ -1,2 +1,2 @@
-# samagra-devOps-guide
+# Samagra-DevOps-Guide
 A guide to devops infrastructure in Samagra. 
