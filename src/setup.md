@@ -1,6 +1,6 @@
 # Setup of DevOps pipeline
 
-DevOps pipeline has following main components. 
+DevOps pipeline has the following main components. 
 
 1. Jenkins Server
 2. Hashicorp Vault
@@ -12,7 +12,6 @@ DevOps pipeline has following main components.
 
 Setup
 -------
-
 - Install Jenkins from https://www.jenkins.io/doc/book/installing/
 - Setup Hashicorp Vault from https://developer.hashicorp.com/vault/tutorials/getting-started/getting-started-deploy
   - Generate Unseal keys and vault token
@@ -20,16 +19,6 @@ Setup
 - Initialize Docker Swarm - https://docs.docker.com/engine/reference/commandline/swarm_init/
   - Docker swarm needs an external overlay network to be created. Create a network named `application_default` in Docker - https://docs.docker.com/network/overlay/        
 - Install ansible on Docker Swarm and Database servers - https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html
-- **Configure Jenkins**
-  - Setup Pipelines  
-    - Go to `/home` location and clone the `<project>-devops` pipelines. For example, go to `/home` and clone https://github.com/Unified-Learner-Passbook/ULP-devops
-    - Create symbolic links to Jenkins jobs `ln -s /home/ulp-devops/jobs/ULP /var/lib/jenkins/jobs/`
-    - Set permissions `chown -R jenkins:jenkins jobs && chown -R jenkins:jenkins /var/lib/jenkins`
-    - Restart Jenkins - `systemctl restart jenkins`. You should be able to see all the Jobs on the Jenkins Dashboard. 
-  - Setup environment variables in Jenkins
-    - Go to **Dashboard -> Manage Jenkins -> Configure System**
-    - Select environment variables checkbox and add `VAULT_ADDR_DEV` and `VAULT_TOKEN_DEV` with corresponding values you got while setting up Hashicorp Vault
-    - These variables are needed in the `deploy` jobs in the pipeline. 
 - **Setup Docker Registry**
   - Use the following compose for private registry setup. 
   ```
@@ -45,6 +34,20 @@ Setup
       volumes:
         - ./data:/data
   ```
+  
+Configure
+----------
+- **Configure Jenkins**
+  - Setup Pipelines  
+    - Go to `/home` location and clone the `<project>-devops` pipelines. For example, go to `/home` and clone https://github.com/Unified-Learner-Passbook/ULP-devops
+    - Create symbolic links to Jenkins jobs `ln -s /home/ulp-devops/jobs/ULP /var/lib/jenkins/jobs/`
+    - Set permissions `chown -R jenkins:jenkins jobs && chown -R jenkins:jenkins /var/lib/jenkins`
+    - Restart Jenkins - `systemctl restart jenkins`. You should be able to see all the Jobs on the Jenkins Dashboard. 
+  - Setup environment variables in Jenkins
+    - Go to **Dashboard -> Manage Jenkins -> Configure System**
+    - Select environment variables checkbox and add `VAULT_ADDR_DEV` and `VAULT_TOKEN_DEV` with corresponding values you got while setting up Hashicorp Vault
+    - These variables are needed in the `deploy` jobs in the pipeline. 
+
 - **Configure Ansible**
   - `jenkins` user should be able to `ssh` on to the Docker Swarm and Database Servers 
     - Switch to `jenkins` user and run `ssh-keygen`. Select all default options. 
