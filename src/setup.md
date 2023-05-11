@@ -12,14 +12,14 @@ DevOps pipeline has the following main components.
 
 Setup
 -------
-- Install Jenkins from https://www.jenkins.io/doc/book/installing/
-- Setup Hashicorp Vault from https://developer.hashicorp.com/vault/tutorials/getting-started/getting-started-deploy
+- Install [Jenkins](https://www.jenkins.io/doc/book/installing/)
+- Setup Hashicorp [Vault](https://developer.hashicorp.com/vault/tutorials/getting-started/getting-started-deploy) 
   - Generate Unseal keys and vault token
-- Install Docker - https://docs.docker.com/engine/install/ubuntu/
-- Initialize Docker Swarm - https://docs.docker.com/engine/reference/commandline/swarm_init/
-  - Docker swarm needs an external overlay network to be created. Create a network named `application_default` in Docker - https://docs.docker.com/network/overlay/        
-- Install ansible on Docker Swarm and Database servers - https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html
-- **Setup Docker Registry**
+- Install [Docker](https://docs.docker.com/engine/install/ubuntu/) 
+- Initialize [Docker Swarm](https://docs.docker.com/engine/reference/commandline/swarm_init/) 
+  - Docker swarm needs an external [overlay network](https://docs.docker.com/network/overlay/) to be created. Create a network named `application_default` in Docker         
+- [Install ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) on Docker Swarm and Database servers
+- Setup Docker Registry
   - Use the following compose for private registry setup. 
   ```
   version: '3'
@@ -39,7 +39,7 @@ Configure
 ----------
 - **Configure Jenkins**
   - Setup Pipelines  
-    - Go to `/home` location and clone the `<project>-devops` pipelines. For example, go to `/home` and clone https://github.com/Unified-Learner-Passbook/ULP-devops
+    - Go to `/home` location and clone the `<project>-devops` pipelines. For example, go to `/home` and clone `https://github.com/Unified-Learner-Passbook/ULP-devops`
     - Create symbolic links to Jenkins jobs `ln -s /home/ulp-devops/jobs/ULP /var/lib/jenkins/jobs/`
     - Set permissions `chown -R jenkins:jenkins jobs && chown -R jenkins:jenkins /var/lib/jenkins`
     - Restart Jenkins - `systemctl restart jenkins`. You should be able to see all the Jobs on the Jenkins Dashboard. 
@@ -53,8 +53,8 @@ Configure
     - Switch to `jenkins` user and run `ssh-keygen`. Select all default options. 
     - Copy public key from `~/.ssh/id_rsa.pub` and paste it under `~/.ssh/authorized_keys` on the Docker Swarm and Database Server
   - Configure Ansible Hosts
-    - Go to https://github.com/Unified-Learner-Passbook/ULP-devops/blob/master/ansible_workspace_dir/inventory/hosts  
-    - Uncomment the localhost lines or add `localhost` under `dev` group. You can read more about ansible hosts here - https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html
+    - Go to `https://github.com/Unified-Learner-Passbook/ULP-devops/blob/master/ansible_workspace_dir/inventory/hosts`  
+    - Uncomment the localhost lines or add `localhost` under `dev` group. You can read more about ansible hosts [here](https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html) 
 
   
   
