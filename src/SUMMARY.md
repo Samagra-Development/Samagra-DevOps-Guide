@@ -6,6 +6,7 @@
 [Jenkins View](jenkins.md)
 [Jenkins Configuration](jenkins_config.md)
 [Jenkins Build Runs](jenkins_build.md)
+[Setup](setup.md)
 
 <!-- 
 TODO : 
