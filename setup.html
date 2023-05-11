@@ -1,0 +1,254 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Setup - Samagra-Devops-Guide</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="infrastructure.html">Infrastructure Overview</a></li><li class="chapter-item expanded affix "><a href="github.html">Github</a></li><li class="chapter-item expanded affix "><a href="jenkins.html">Jenkins View</a></li><li class="chapter-item expanded affix "><a href="jenkins_config.html">Jenkins Configuration</a></li><li class="chapter-item expanded affix "><a href="jenkins_build.html">Jenkins Build Runs</a></li><li class="chapter-item expanded affix "><a href="setup.html" class="active">Setup</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Samagra-Devops-Guide</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="setup-of-devops-pipeline"><a class="header" href="#setup-of-devops-pipeline">Setup of DevOps pipeline</a></h1>
+<p>DevOps pipeline has the following main components. </p>
+<ol>
+<li>Jenkins Server</li>
+<li>Hashicorp Vault</li>
+<li>Docker Swarm (This could be your localhost as well)</li>
+<li>Database Server (This could be your localhost as well, same as Docker Swarm)</li>
+<li>Private Docker Registry</li>
+<li>Ansible</li>
+<li>Preferred OS environment is Linux, Setup is not tested on windows</li>
+</ol>
+<h2 id="setup"><a class="header" href="#setup">Setup</a></h2>
+<ul>
+<li>Install <a href="https://www.jenkins.io/doc/book/installing/">Jenkins</a></li>
+<li>Setup Hashicorp <a href="https://developer.hashicorp.com/vault/tutorials/getting-started/getting-started-deploy">Vault</a> 
+<ul>
+<li>Generate Unseal keys and vault token</li>
+</ul>
+</li>
+<li>Install <a href="https://docs.docker.com/engine/install/ubuntu/">Docker</a> </li>
+<li>Initialize <a href="https://docs.docker.com/engine/reference/commandline/swarm_init/">Docker Swarm</a> 
+<ul>
+<li>Docker swarm needs an external <a href="https://docs.docker.com/network/overlay/">overlay network</a> to be created. Create a network named <code>application_default</code> in Docker</li>
+</ul>
+</li>
+<li><a href="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html">Install ansible</a> on Docker Swarm and Database servers</li>
+<li>Setup Docker Registry
+<ul>
+<li>Use the following compose for private registry setup. </li>
+</ul>
+<pre><code>version: '3'
+
+services:
+  registry:
+    image: registry:2
+    ports:
+    - &quot;[Replace this with private_ip or nothing]:5000:5000&quot;
+    environment:
+      REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /data
+    volumes:
+      - ./data:/data
+</code></pre>
+</li>
+</ul>
+<h2 id="configure"><a class="header" href="#configure">Configure</a></h2>
+<ul>
+<li>
+<p><strong>Configure Jenkins</strong></p>
+<ul>
+<li>Setup Pipelines
+<ul>
+<li>Go to <code>/home</code> location and clone the <code>&lt;project&gt;-devops</code> pipelines. For example, go to <code>/home</code> and clone <code>https://github.com/Unified-Learner-Passbook/ULP-devops</code></li>
+<li>Create symbolic links to Jenkins jobs <code>ln -s /home/ulp-devops/jobs/ULP /var/lib/jenkins/jobs/</code></li>
+<li>Set permissions <code>chown -R jenkins:jenkins jobs &amp;&amp; chown -R jenkins:jenkins /var/lib/jenkins</code></li>
+<li>Restart Jenkins - <code>systemctl restart jenkins</code>. You should be able to see all the Jobs on the Jenkins Dashboard. </li>
+</ul>
+</li>
+<li>Setup environment variables in Jenkins
+<ul>
+<li>Go to <strong>Dashboard -&gt; Manage Jenkins -&gt; Configure System</strong></li>
+<li>Select environment variables checkbox and add <code>VAULT_ADDR_DEV</code> and <code>VAULT_TOKEN_DEV</code> with corresponding values you got while setting up Hashicorp Vault</li>
+<li>These variables are needed in the <code>deploy</code> jobs in the pipeline. </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Configure Ansible</strong></p>
+<ul>
+<li><code>jenkins</code> user should be able to <code>ssh</code> on to the Docker Swarm and Database Servers 
+<ul>
+<li>Switch to <code>jenkins</code> user and run <code>ssh-keygen</code>. Select all default options. </li>
+<li>Copy public key from <code>~/.ssh/id_rsa.pub</code> and paste it under <code>~/.ssh/authorized_keys</code> on the Docker Swarm and Database Server</li>
+</ul>
+</li>
+<li>Configure Ansible Hosts
+<ul>
+<li>Go to <code>https://github.com/Unified-Learner-Passbook/ULP-devops/blob/master/ansible_workspace_dir/inventory/hosts</code></li>
+<li>Uncomment the localhost lines or add <code>localhost</code> under <code>dev</code> group. You can read more about ansible hosts <a href="https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html">here</a> </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="jenkins_build.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="jenkins_build.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>

@@ -1,0 +1,360 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Samagra-Devops-Guide</title>
+        <meta name="robots" content="noindex" />
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="infrastructure.html">Infrastructure Overview</a></li><li class="chapter-item expanded affix "><a href="github.html">Github</a></li><li class="chapter-item expanded affix "><a href="jenkins.html">Jenkins View</a></li><li class="chapter-item expanded affix "><a href="jenkins_config.html">Jenkins Configuration</a></li><li class="chapter-item expanded affix "><a href="jenkins_build.html">Jenkins Build Runs</a></li><li class="chapter-item expanded affix "><a href="setup.html">Setup</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Samagra-Devops-Guide</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<p><strong>Welcome to the Samagra DevOps guide!</strong></p>
+<p>Whether you're a startup or a large enterprise, your ability to deliver software quickly, reliably, and securely is critical to your success. That's where DevOps comes in. </p>
+<p>DevOps is a set of practices that combines development and operations teams to work together in a more agile, collaborative, and automated way. </p>
+<p>At Samagra, we're passionate about adopting DevOps practices and improve the software delivery capabilities. In this guide, we'll explore the key concepts, tools, and processes that make up a successful DevOps strategy. Whether you're just getting started with DevOps or looking to improve your existing practices, this guide will provide practical tips and best practices to help you achieve your goals.</p>
+<p>Let's get started with the guide.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="infrastructure-overview"><a class="header" href="#infrastructure-overview">Infrastructure Overview</a></h1>
+<p><img src="https://user-images.githubusercontent.com/79367883/222868082-35a5e06a-00ba-46e0-abb6-ff2369ae0525.png" alt="image" /></p>
+<ol>
+<li>
+<p><code>Development</code> : Developers work on code changes locally and push their changes to a GitHub repository.</p>
+</li>
+<li>
+<p><code>GitHub Actions</code> : When a code change is pushed to GitHub, a GitHub Action is triggered to run automated tests on the code. This ensures that any issues are caught early and can be fixed before they are deployed.</p>
+</li>
+<li>
+<p><code>GitHub Webhooks</code> : Once the code is merged, GitHub webhooks trigger a Jenkins job to build and deploy the code changes to a staging environment.</p>
+</li>
+<li>
+<p><code>Jenkins</code> : Jenkins runs a build pipeline to verify the build.</p>
+</li>
+<li>
+<p><code>Deploy</code> : Jenkins has another pipeline (deploy-staging) which deploy the code changes to the production environment using Ansible playbooks.</p>
+</li>
+<li>
+<p><code>Hashicorp Vault</code>: It can be used to manage secrets that are required by the various tools and processes involved in the pipeline. Ansible fetches these secrets from here. </p>
+</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="github"><a class="header" href="#github">Github</a></h1>
+<h2 id="repositories"><a class="header" href="#repositories">Repositories</a></h2>
+<hr />
+<ul>
+<li><a href="https://github.com/Samagra-Development/samagra-devops"><strong>samagra-devops</strong></a> : It is the main repo that contains Jenkins job and Ansible roles for services that are reproducible in other projects at Samagra.</li>
+<li>Each project then contains a (project-name)-DevOps repo. For example <a href="https://github.com/Unified-Learner-Passbook/ULP-devops">ULP-Devops</a> etc.</li>
+</ul>
+<!-- Here we can also talk about where are our Jenkinsfile stored. In build/Jenkins for all the project repos and similarly for Dockerfile. -->
+<h2 id="project-structure"><a class="header" href="#project-structure">Project Structure</a></h2>
+<hr />
+<p>For each project which we have as pipeline, In their github repository we follow a common structure for getting the Dockerfile and Jenkinsfile.</p>
+<pre><code>root-project-repo/
+    ├── Dockerfile
+    ├── build/       
+            ├── Jenkinsfile
+</code></pre>
+<p>The Dockerfile needs to be tested by developers for any errors and once it is ready, we can use it to deploy the project in private docker registry on docker swarm. </p>
+<p>The Jenkinsfile contains all the necessary steps for several stages in a pipeline which eventually builds the project on server and deploys it.</p>
+<h2 id="webhook-urls"><a class="header" href="#webhook-urls">Webhook URLs</a></h2>
+<hr />
+<p><img src="https://user-images.githubusercontent.com/79367883/222879655-78aab321-5f95-4b5f-91f0-0251a16fa91c.png" alt="image" /></p>
+<p>In each project, we have the webhook which triggers the events occuring on github to the jenkins which helps in detecting the changes going in a repository.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="jenkins-view"><a class="header" href="#jenkins-view">Jenkins View</a></h1>
+<h2 id="dashboard"><a class="header" href="#dashboard">Dashboard</a></h2>
+<hr />
+<p>It is the main Jenkins screen which you would be able to see just after login. </p>
+<p><img src="https://user-images.githubusercontent.com/79367883/222869591-78f431ed-f69c-4fc0-87bb-877abb4dbbe0.png" alt="image" /></p>
+<h2 id="project-space"><a class="header" href="#project-space">Project Space</a></h2>
+<hr />
+<p>In project space there are directories for specific projects or job.</p>
+<p><img src="https://user-images.githubusercontent.com/79367883/222869626-73a24e17-62c8-4ab4-a2bf-de08e804fa38.png" alt="image" /></p>
+<h2 id="pipelines"><a class="header" href="#pipelines">Pipelines</a></h2>
+<hr />
+<p>For each job we have two pipelines.</p>
+<ul>
+<li>build</li>
+<li>deploy-staging</li>
+<li>deploy-prod (third pipeline yet to come)
+<img src="https://user-images.githubusercontent.com/79367883/222869689-285557b2-cb88-491b-8e66-2828d29fb8a4.png" alt="image" /></li>
+</ul>
+<h4 id="build-pipeline"><a class="header" href="#build-pipeline">Build Pipeline</a></h4>
+<p>This is a <strong>multibranch pipeline</strong> and it can make Docker image builds of all branches and new PRs that are created. Images are tagged by <em>branch name</em> or <em>PR-(Number)</em> and pushed to a private docker registry.</p>
+<p><img src="https://user-images.githubusercontent.com/79367883/222869924-9e602ead-cefd-43b8-861e-9d309b779233.png" alt="image" /></p>
+<h4 id="deploy-staging"><a class="header" href="#deploy-staging">Deploy-staging</a></h4>
+<p>Whenever commits are made to main/master branch, this job automatically deploys the code to the server and pushes a notification on the discord channel regarding the success and failure of the jobs. 
+<img src="https://user-images.githubusercontent.com/79367883/222870231-34fa2fc2-7cc5-4162-bf6c-60c662073bc9.png" alt="image" /></p>
+<h4 id="deploy-prod"><a class="header" href="#deploy-prod">Deploy-prod</a></h4>
+<p>This pipeline will be used to deploy to the prod server and will be manually used to deploy the changes
+<img src="https://user-images.githubusercontent.com/79367883/222870334-3308af3d-b1c8-40b1-a926-34d25ba40e16.png" alt="image" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="jenkins-configuration"><a class="header" href="#jenkins-configuration">Jenkins Configuration</a></h1>
+<p>As we have the build pipeline running the stages as defined in the Jenkinsfile for any project, we have a lot more going once the build is succedded. Many things are configured into the deploy staging pipeline. </p>
+<ul>
+<li>Running the ansible playbook for testing. </li>
+<li>Sending the build status notification to Samagra discord server.</li>
+</ul>
+<p>Jenkins allow us to configure all such tasks.</p>
+<p><img src="https://user-images.githubusercontent.com/79367883/222879979-6b7b21b9-438b-40db-b24a-a4c0c7efa151.png" alt="image" /></p>
+<ol>
+<li>Creating build tags as string parameters.</li>
+</ol>
+<p><img src="https://user-images.githubusercontent.com/79367883/222880060-ec3e0d5b-0f6c-450c-a389-f218af683d3d.png" alt="image" /></p>
+<ol start="2">
+<li>Running Shell commands after each build runs. </li>
+</ol>
+<p><img src="https://user-images.githubusercontent.com/79367883/222880192-79ba4f55-2f6c-4161-99d9-283a5dab9f9b.png" alt="image" /></p>
+<p>Here as you can see, the tag parameter which we created in step 1 gets used with ansible-playbook. You can create several parameters if needed.</p>
+<ol start="3">
+<li>Setting up discord notifier using webhook URL.</li>
+</ol>
+<p><img src="https://user-images.githubusercontent.com/79367883/222880245-f4a047de-6e4b-49d6-950a-dc298fb675ec.png" alt="image" />'</p>
+<hr />
+<p>If need arises, you can manually deploy the projects using the <em>build with parameters</em> option.</p>
+<p><img src="https://user-images.githubusercontent.com/79367883/222880709-e897de61-2315-4504-a6e1-3fdf389f5efd.png" alt="image" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="jenkins-build-runs"><a class="header" href="#jenkins-build-runs">Jenkins Build Runs</a></h1>
+<p>You would wish to see the build history and the logs in case if the build fails. This section is all about knowing about where the builds history would be visible and where you can see the output logs.</p>
+<p><img src="https://user-images.githubusercontent.com/79367883/222881031-2a7b2993-0b4a-4ec8-becc-4d1e77d93c45.png" alt="image" /></p>
+<p>Now, If you click on any build ( Eg <code>#45</code> ) then you get more clear overview about the job.</p>
+<p><img src="https://user-images.githubusercontent.com/79367883/222881158-6b50ef86-d3ff-49fd-9c0a-9a4de28fbda1.png" alt="image" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="setup-of-devops-pipeline"><a class="header" href="#setup-of-devops-pipeline">Setup of DevOps pipeline</a></h1>
+<p>DevOps pipeline has the following main components. </p>
+<ol>
+<li>Jenkins Server</li>
+<li>Hashicorp Vault</li>
+<li>Docker Swarm (This could be your localhost as well)</li>
+<li>Database Server (This could be your localhost as well, same as Docker Swarm)</li>
+<li>Private Docker Registry</li>
+<li>Ansible</li>
+<li>Preferred OS environment is Linux, Setup is not tested on windows</li>
+</ol>
+<h2 id="setup"><a class="header" href="#setup">Setup</a></h2>
+<ul>
+<li>Install <a href="https://www.jenkins.io/doc/book/installing/">Jenkins</a></li>
+<li>Setup Hashicorp <a href="https://developer.hashicorp.com/vault/tutorials/getting-started/getting-started-deploy">Vault</a> 
+<ul>
+<li>Generate Unseal keys and vault token</li>
+</ul>
+</li>
+<li>Install <a href="https://docs.docker.com/engine/install/ubuntu/">Docker</a> </li>
+<li>Initialize <a href="https://docs.docker.com/engine/reference/commandline/swarm_init/">Docker Swarm</a> 
+<ul>
+<li>Docker swarm needs an external <a href="https://docs.docker.com/network/overlay/">overlay network</a> to be created. Create a network named <code>application_default</code> in Docker</li>
+</ul>
+</li>
+<li><a href="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html">Install ansible</a> on Docker Swarm and Database servers</li>
+<li>Setup Docker Registry
+<ul>
+<li>Use the following compose for private registry setup. </li>
+</ul>
+<pre><code>version: '3'
+
+services:
+  registry:
+    image: registry:2
+    ports:
+    - &quot;[Replace this with private_ip or nothing]:5000:5000&quot;
+    environment:
+      REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /data
+    volumes:
+      - ./data:/data
+</code></pre>
+</li>
+</ul>
+<h2 id="configure"><a class="header" href="#configure">Configure</a></h2>
+<ul>
+<li>
+<p><strong>Configure Jenkins</strong></p>
+<ul>
+<li>Setup Pipelines
+<ul>
+<li>Go to <code>/home</code> location and clone the <code>&lt;project&gt;-devops</code> pipelines. For example, go to <code>/home</code> and clone <code>https://github.com/Unified-Learner-Passbook/ULP-devops</code></li>
+<li>Create symbolic links to Jenkins jobs <code>ln -s /home/ulp-devops/jobs/ULP /var/lib/jenkins/jobs/</code></li>
+<li>Set permissions <code>chown -R jenkins:jenkins jobs &amp;&amp; chown -R jenkins:jenkins /var/lib/jenkins</code></li>
+<li>Restart Jenkins - <code>systemctl restart jenkins</code>. You should be able to see all the Jobs on the Jenkins Dashboard. </li>
+</ul>
+</li>
+<li>Setup environment variables in Jenkins
+<ul>
+<li>Go to <strong>Dashboard -&gt; Manage Jenkins -&gt; Configure System</strong></li>
+<li>Select environment variables checkbox and add <code>VAULT_ADDR_DEV</code> and <code>VAULT_TOKEN_DEV</code> with corresponding values you got while setting up Hashicorp Vault</li>
+<li>These variables are needed in the <code>deploy</code> jobs in the pipeline. </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Configure Ansible</strong></p>
+<ul>
+<li><code>jenkins</code> user should be able to <code>ssh</code> on to the Docker Swarm and Database Servers 
+<ul>
+<li>Switch to <code>jenkins</code> user and run <code>ssh-keygen</code>. Select all default options. </li>
+<li>Copy public key from <code>~/.ssh/id_rsa.pub</code> and paste it under <code>~/.ssh/authorized_keys</code> on the Docker Swarm and Database Server</li>
+</ul>
+</li>
+<li>Configure Ansible Hosts
+<ul>
+<li>Go to <code>https://github.com/Unified-Learner-Passbook/ULP-devops/blob/master/ansible_workspace_dir/inventory/hosts</code></li>
+<li>Uncomment the localhost lines or add <code>localhost</code> under <code>dev</code> group. You can read more about ansible hosts <a href="https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html">here</a> </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+    </body>
+</html>
